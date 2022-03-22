@@ -10,16 +10,9 @@ import UIKit
 
 final class HomeView: UIView {
     
-    let playButton: UIButton = {
-        let button = UIButton()
-
-        button.setTitle("Jogar", for: .normal)
-        button.backgroundColor = .clear
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.white.cgColor
-        button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        return button
-    }()
+    let playButton = HomeButton(title: "JOGAR")
+    
+    let leaderboardButton = HomeButton(title: "PLACAR DE JOGADORES")
     
     init() {
         super.init(frame: .zero)
@@ -33,12 +26,31 @@ final class HomeView: UIView {
 }
 
 extension HomeView {
+    
     private func setupConstraints() {
+        setupPlayButton()
+        setupLeaderboardButton()
+    }
+    
+    fileprivate func setupPlayButton() {
         playButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(playButton)
         NSLayoutConstraint.activate([
-            playButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            playButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+            playButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 20),
+            playButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            playButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.7)
         ])
     }
+    
+    fileprivate func setupLeaderboardButton() {
+        leaderboardButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(leaderboardButton)
+        NSLayoutConstraint.activate([
+            leaderboardButton.topAnchor.constraint(equalTo: playButton.bottomAnchor, constant: 20),
+            leaderboardButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            leaderboardButton.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.7)
+        ])
+    }
+    
 }
+    
