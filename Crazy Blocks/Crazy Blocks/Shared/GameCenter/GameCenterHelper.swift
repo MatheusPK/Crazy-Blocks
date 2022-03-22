@@ -8,6 +8,7 @@
 protocol GameCenterAuthDelegate {
     func presentGameCenterAuth(viewController: UIViewController)
     func didChangeAuthStatus(isAuthenticated: Bool)
+    func presentMatchMaker(viewController: GKMatchmakerViewController)
 }
 
 import GameKit
@@ -43,6 +44,21 @@ final class GameCenterHelper: NSObject, GKLocalPlayerListener {
                 print("Error authentication to GameCenter: \(error?.localizedDescription ?? "none")")
             }
         }
+        
+    }
+    
+    func createMatch() {
+        guard GKLocalPlayer.local.isAuthenticated else { return }
+        guard let delegate = delegate else { return }
+        
+        let request = GKMatchRequest()
+        request.minPlayers = 2
+        request.maxPlayers = 4
+        
+        guard let vc = GKMatchmakerViewController(matchRequest: request) else { return }
+        vc.matchmakingMode = .default
+
+        delegate.presentMatchMaker(viewController: vc)
         
     }
     
