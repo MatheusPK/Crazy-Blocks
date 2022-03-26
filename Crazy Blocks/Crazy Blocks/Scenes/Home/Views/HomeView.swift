@@ -10,9 +10,9 @@ import UIKit
 
 final class HomeView: UIView {
     
-    let playButton = HomeButton(title: "JOGAR")
+    let playButton = BaseButton(title: "JOGAR")
     
-    let leaderboardButton = HomeButton(title: "PLACAR DE JOGADORES")
+    let leaderboardButton = BaseButton(title: "PLACAR DE JOGADORES")
     
     init() {
         super.init(frame: .zero)

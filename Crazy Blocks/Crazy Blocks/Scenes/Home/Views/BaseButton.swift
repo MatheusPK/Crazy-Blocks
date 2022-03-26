@@ -1,5 +1,5 @@
 //
-//  HomeButton.swift
+//  BaseButton.swift
 //  Crazy Blocks
 //
 //  Created by Matheus P.K on 22/03/22.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class HomeButton: UIButton {
+class BaseButton: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         configuration = UIButton.Configuration.filled()
